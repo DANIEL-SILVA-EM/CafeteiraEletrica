@@ -23,10 +23,17 @@ namespace CafeteiraEletrica
 
         internal abstract void Prepare();
         private protected abstract void RecipienteDeContencaoRemovido();
+        private protected abstract void RecipienteDeContencaoDevolvido();
 
         private protected  void InterrompaProducao()
         {
             _fonteDeAguaQuente.InterrompaProducao();
         }
+
+        private protected void RetorneProducao()
+        {
+            _fonteDeAguaQuente.RetorneProducao();
+        }
+
     }
 }

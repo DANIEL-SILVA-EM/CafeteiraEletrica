@@ -23,10 +23,6 @@ namespace CafeteiraEletrica
             }
         }
 
-        public void Preparando()
-        {
-            throw new NotImplementedException();
-        }
 
         internal override void InterrompaProducao()
         {
@@ -38,6 +34,17 @@ namespace CafeteiraEletrica
         {
             _api.SetBoilerState(BoilerState.ON);
             _api.SetReliefValveState(ReliefValveState.CLOSED);
+        }
+
+        internal override void RetorneProducao()
+        {
+            _api.SetBoilerState(BoilerState.ON);
+            _api.SetReliefValveState(ReliefValveState.CLOSED);
+        }
+
+        public void Preparando()
+        {
+            throw new NotImplementedException();
         }
     }
 }

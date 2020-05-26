@@ -33,7 +33,7 @@ Cenário: Devolução do recipiente de conteção
 	Então o preparo do café e retomado
 
 Cenário: Preparado e pronto para consumo
-	Dado o preparo do café e iniciado
+	Dado que o preparo do café foi iniciado
 	Quando comcluido o preparo do café
 	Então o café está pronto para o consumo
 	E mantido aquecido até ser consumo por completo

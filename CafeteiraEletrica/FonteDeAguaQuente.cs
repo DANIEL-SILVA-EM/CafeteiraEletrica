@@ -15,5 +15,6 @@ namespace CafeteiraEletrica
 
         internal abstract void Prepare();
         internal abstract void InterrompaProducao();
+        internal abstract void RetorneProducao();
     }
 }
