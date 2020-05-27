@@ -24,6 +24,6 @@ namespace CafeteiraEletrica
                 _recipienteDeContencao.Prepare();
             }
         }
-
+        internal abstract void Pronto();
     }
 }

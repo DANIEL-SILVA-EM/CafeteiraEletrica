@@ -25,7 +25,10 @@ namespace CafeteiraEletrica.Teste.Steps
         [Given(@"uma fonte de água quente")]
         public void GivenUmaFonteDeAguaQuente()
         {
-            _fonteDeAguaQuente = new M4FonteDeAguaQuente(_coffeeMakerApi);
+            if (_fonteDeAguaQuente == null)
+                _fonteDeAguaQuente = new M4FonteDeAguaQuente(_coffeeMakerApi);
+
+            _fonteDeAguaQuente.Inicio(_interfaceDoUsuario, _recipienteDeContencao);
         }
 
         [Given(@"que a fonte não contém água")]
@@ -37,7 +40,9 @@ namespace CafeteiraEletrica.Teste.Steps
         [Given(@"um recipiente de contenção")]
         public void GivenUmRecipienteDeContencao()
         {
-            _recipienteDeContencao = new M4RecipienteDeContencao(_coffeeMakerApi);
+            if (_recipienteDeContencao == null)
+                _recipienteDeContencao = new M4RecipienteDeContencao(_coffeeMakerApi);
+
             _recipienteDeContencao.Inicio(_interfaceDoUsuario, _fonteDeAguaQuente);
         }
 
@@ -50,7 +55,9 @@ namespace CafeteiraEletrica.Teste.Steps
         [Given(@"um interface de usuario")]
         public void GivenUmInterfaceDeUsuario()
         {
-            _interfaceDoUsuario = new M4InterfaceDoUsuario(_coffeeMakerApi);
+            if (_interfaceDoUsuario == null)
+                _interfaceDoUsuario = new M4InterfaceDoUsuario(_coffeeMakerApi);
+
             _interfaceDoUsuario.Inicio(_fonteDeAguaQuente, _recipienteDeContencao);
         }
 
@@ -62,7 +69,10 @@ namespace CafeteiraEletrica.Teste.Steps
             GivenUmRecipienteDeContencao();
             GivenQueORecipienteEstejaAcoplado();
             GivenUmInterfaceDeUsuario();
-            GivenPrecionadoOBotaoDeInicio();
+            GivenPrecionadoOBotaoDeInicio();            
+            GivenUmInterfaceDeUsuario();
+            GivenUmaFonteDeAguaQuente();
+            GivenUmRecipienteDeContencao();
             WhenIniciadoOPreparoDoCafe();
             ThenOPreparoDoCafeEIniciado();
         }
@@ -126,7 +136,7 @@ namespace CafeteiraEletrica.Teste.Steps
         [When(@"comcluido o preparo do café")]
         public void WhenComcluidoOPreparoDoCafe()
         {
-            _coffeeMakerApi.SetWarmerPlateStatus(WarmerPlateStatus.POT_NOT_EMPTY);
+            _coffeeMakerApi.SetWarmerPlateStatus(WarmerPlateStatus.POT_NOT_EMPTY);            
             _coffeeMakerApi.SetBoilerStatus(BoilerStatus.EMPTY);
             WhenIniciadoOPreparoDoCafe();
         }

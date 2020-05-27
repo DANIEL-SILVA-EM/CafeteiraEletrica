@@ -23,5 +23,13 @@ namespace CafeteiraEletrica
                 Iniciar();
             }
         }
+
+        internal override void Pronto()
+        {
+            if (_api.GetBoilerStatus() == BoilerStatus.EMPTY)
+            {
+                _api.SetIndicatorState(IndicatorState.ON);
+            }
+        }
     }
 }

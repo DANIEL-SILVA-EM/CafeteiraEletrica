@@ -44,7 +44,16 @@ namespace CafeteiraEletrica
 
         public void Preparando()
         {
-            throw new NotImplementedException();
+            CafeEstaPronto();            
+        }
+
+        private void CafeEstaPronto()
+        {
+            if (_api.GetBoilerStatus() != BoilerStatus.EMPTY || _api.GetWarmerPlateStatus() != WarmerPlateStatus.POT_NOT_EMPTY) return;
+            
+            _api.SetBoilerState(BoilerState.OFF);
+            _api.SetReliefValveState(ReliefValveState.OPEN);
+            Pronto();
         }
     }
 }

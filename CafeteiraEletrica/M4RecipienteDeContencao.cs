@@ -30,6 +30,12 @@ namespace CafeteiraEletrica
             _api.SetWarmerState(WarmerState.ON);
         }
 
+        public void Preparando()
+        {
+            RecipienteDeContencaoRemovido();
+            RecipienteDeContencaoDevolvido();
+        }
+
         private protected override void RecipienteDeContencaoRemovido()
         {
             if (EstaPreparando && _api.GetWarmerPlateStatus() != WarmerPlateStatus.WARMER_EMPTY) return;
@@ -45,11 +51,10 @@ namespace CafeteiraEletrica
             RetorneProducao();
         }
 
-        public void Preparando()
+        internal override void Pronto()
         {
-            RecipienteDeContencaoRemovido();
-            RecipienteDeContencaoDevolvido();
+            _api.SetWarmerState(WarmerState.ON);
+            MensagemPronto();
         }
-
     }
 }

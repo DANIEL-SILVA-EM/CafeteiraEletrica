@@ -18,9 +18,9 @@ namespace CafeteiraEletrica
             _fonteDeAguaQuente = fonteDeAguaQuente;
         }
 
-
         protected internal abstract bool EstaPronto { get; }
 
+        internal abstract void Pronto();
         internal abstract void Prepare();
         private protected abstract void RecipienteDeContencaoRemovido();
         private protected abstract void RecipienteDeContencaoDevolvido();
@@ -35,5 +35,9 @@ namespace CafeteiraEletrica
             _fonteDeAguaQuente.RetorneProducao();
         }
 
+        private protected void MensagemPronto()
+        {
+            _interfaceDoUsuario.Pronto();
+        }
     }
 }

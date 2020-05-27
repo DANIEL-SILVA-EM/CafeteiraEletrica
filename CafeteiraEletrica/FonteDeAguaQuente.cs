@@ -11,10 +11,19 @@ namespace CafeteiraEletrica
         private RecipienteDeContencao _recipienteDeContencao;
         private InterfaceDoUsuario _interfaceDoUsuario;
 
-        protected internal abstract bool EstaPronto { get; }
+        public void Inicio(M4InterfaceDoUsuario interfaceDoUsuario, M4RecipienteDeContencao recipienteDeContencao)
+        {
+            _interfaceDoUsuario = interfaceDoUsuario;
+            _recipienteDeContencao = recipienteDeContencao;
+        }
 
+        protected internal abstract bool EstaPronto { get; }
         internal abstract void Prepare();
         internal abstract void InterrompaProducao();
         internal abstract void RetorneProducao();
+        private protected void Pronto()
+        {
+            _recipienteDeContencao.Pronto();           
+        }
     }
 }
