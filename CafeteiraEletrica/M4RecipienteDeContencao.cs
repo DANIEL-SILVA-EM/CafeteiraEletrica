@@ -34,7 +34,9 @@ namespace CafeteiraEletrica
         {
             RecipienteDeContencaoRemovido();
             RecipienteDeContencaoDevolvido();
+            CafeFoiConsumido();
         }
+
 
         private protected override void RecipienteDeContencaoRemovido()
         {
@@ -54,6 +56,14 @@ namespace CafeteiraEletrica
         internal override void Pronto()
         {
             _api.SetWarmerState(WarmerState.ON);
+            EstaPreparando = true;
+            MensagemPronto();
+        }
+        private void CafeFoiConsumido()
+        {
+            if (_api.GetBrewButtonStatus() != BrewButtonStatus.NOT_PUSHED || _api.GetWarmerPlateStatus() != WarmerPlateStatus.POT_EMPTY) return;
+            _api.SetWarmerState(WarmerState.ON);
+            InterrompaProducao();
             MensagemPronto();
         }
     }
