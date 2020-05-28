@@ -36,12 +36,14 @@ namespace CafeteiraEletrica.Teste
         public void GivenAbastecidoComAguaORespectivoReceptaculo()
         {
             _coffeeMakerApi.SetBoilerStatus(BoilerStatus.NOT_EMPTY);
+            _cafeteiraEletrica.WhenIniciadoOPreparoDoCafe();
         }
 
         [Given(@"uma jarra vazia acoplada para coleta do café")]
         public void GivenUmaJarraVaziaAcopladaParaColetaDoCafe()
         {
             _coffeeMakerApi.SetWarmerPlateStatus(WarmerPlateStatus.POT_EMPTY);
+            _cafeteiraEletrica.WhenIniciadoOPreparoDoCafe();
         }
 
         [Given(@"o café pronto para o consumo")]
