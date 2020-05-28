@@ -36,20 +36,18 @@ namespace CafeteiraEletrica.Teste
         public void GivenAbastecidoComAguaORespectivoReceptaculo()
         {
             _coffeeMakerApi.SetBoilerStatus(BoilerStatus.NOT_EMPTY);
-            _cafeteiraEletrica.WhenIniciadoOPreparoDoCafe();
         }
 
         [Given(@"uma jarra vazia acoplada para coleta do café")]
         public void GivenUmaJarraVaziaAcopladaParaColetaDoCafe()
         {
-            _coffeeMakerApi.SetWarmerPlateStatus(WarmerPlateStatus.POT_EMPTY);
-            _cafeteiraEletrica.WhenIniciadoOPreparoDoCafe();
+            _coffeeMakerApi.SetWarmerPlateStatus(WarmerPlateStatus.POT_EMPTY);            
         }
 
         [Given(@"o café pronto para o consumo")]
         public void GivenOCafeProntoParaOConsumo()
         {
-            throw new PendingStepException();
+            GivenUmaCafeteiraEletricaEmPerfeitoFuncionamento();
         }
 
         [When(@"pressionada a opção preparar")]
@@ -61,7 +59,7 @@ namespace CafeteiraEletrica.Teste
         [When(@"identificado que foi servido por completo")]
         public void WhenIdentificadoQueFoiServidoPorCompleto()
         {
-            throw new PendingStepException();
+            _cafeteiraEletrica.WhenIdentificadoOConsumidoCompleto();
         }
 
         [Then(@"o café está pronto e mantido aquecido")]
@@ -74,7 +72,7 @@ namespace CafeteiraEletrica.Teste
         [Then(@"o cliclo de confecção do café e finalizado")]
         public void ThenOClicloDeConfeccaoDoCafeEFinalizado()
         {
-            throw new PendingStepException();
+            _cafeteiraEletrica.ThenOCicloDePreparoEFinalizado();
         }
     }
 }
