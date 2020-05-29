@@ -38,8 +38,7 @@ namespace CafeteiraEletrica
 
         internal override void RetorneProducao()
         {
-            _api.SetBoilerState(BoilerState.ON);
-            _api.SetReliefValveState(ReliefValveState.CLOSED);
+            Prepare();
         }
 
         public void Preparando()
